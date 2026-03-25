@@ -38,8 +38,11 @@
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: darkgreen;
+        .job {
+            background: #e8f5e9;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -52,18 +55,38 @@
     <div class="container">
         <h3>Post a Job</h3>
 
-        <input type="text" placeholder="Work Type"><br>
-        <input type="date"><br>
-        <input type="text" placeholder="Location"><br>
-        <input type="number" placeholder="Wage"><br>
+        <input type="text" id="work" placeholder="Work Type"><br>
+        <input type="date" id="date"><br>
+        <input type="text" id="location" placeholder="Location"><br>
+        <input type="number" id="wage" placeholder="Wage"><br>
 
-        <button>Post Job</button>
+        <button onclick="postJob()">Post Job</button>
     </div>
 
     <div class="container">
         <h3>Available Jobs</h3>
-        <p>No jobs yet...</p>
+        <div id="jobs"></div>
     </div>
+
+    <script>
+        function postJob() {
+            let work = document.getElementById("work").value;
+            let date = document.getElementById("date").value;
+            let location = document.getElementById("location").value;
+            let wage = document.getElementById("wage").value;
+
+            let job = `
+                <div class="job">
+                    <b>${work}</b><br>
+                    Date: ${date}<br>
+                    Location: ${location}<br>
+                    Wage: ₹${wage}
+                </div>
+            `;
+
+            document.getElementById("jobs").innerHTML += job;
+        }
+    </script>
 
 </body>
 </html>
